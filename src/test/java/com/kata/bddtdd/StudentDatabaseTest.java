@@ -34,7 +34,7 @@ class StudentDatabaseTest {
         List<Student> actualStudentData = studentDatabase.getStudentDetailsFromDB(namePrefix);
 
         assertAll("actualStudentData",
-                () -> assertEquals("nagina", actualStudentData.get(0).getFirstName())
+                () -> assertEquals("novita", actualStudentData.get(0).getFirstName())
         );
     }
 }

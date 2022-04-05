@@ -21,9 +21,9 @@ public class StepDefinition {
         this.namePrefix = namePrefix;
     }
 
-    @When("The student makes a call to get the details")
-    public void the_student_makes_a_call_to_get_the_details() {
-        response = restTemplate.getForEntity("http://localhost:8080/search/" + this.namePrefix, List.class);
+    @When("The student makes a call to {string} get the details")
+    public void the_student_makes_a_call_to_get_the_details(String url) {
+        response = restTemplate.getForEntity(url + this.namePrefix, List.class);
     }
 
     @Then("The API should return the student details and response code {int}")

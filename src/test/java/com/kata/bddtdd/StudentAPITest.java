@@ -12,15 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class StudentControllerTest {
+class StudentAPITest {
 
-    private StudentController studentController;
+    private StudentAPI studentAPI;
     private StudentDatabase mockStudentDatabase;
 
     @BeforeEach
     void setUp() {
         mockStudentDatabase = mock(StudentDatabase.class);
-        studentController = new StudentController(mockStudentDatabase);
+        studentAPI = new StudentAPI(mockStudentDatabase);
     }
 
     @Test
@@ -32,7 +32,7 @@ class StudentControllerTest {
         when(mockStudentDatabase.getStudentDetailsFromDB(namePrefix)).thenReturn(asList(mockData));
 
         //Action
-        List<Student> actualStudentData = studentController.getStudentDetails(namePrefix);
+        List<Student> actualStudentData = studentAPI.getStudentDetails(namePrefix);
 
         //Assertion
         assertAll("actualStudentData",
