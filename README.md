@@ -51,7 +51,7 @@ We are using Cucumber framework for implementing BDD in this boot.
 
 Please add below dependencies in your pom.xml
 ```xml
-        <dependency>
+                <dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-core</artifactId>
 			<version>6.8.0</version>
@@ -227,7 +227,7 @@ Expected output:
 
 Now lets test GET API, open a browser tab and verify if you can a response as below:
 
-```json
+```shell
 http://localhost:8080/search/n
         
 [{"firstName":"novita","lastName":"s"}]
@@ -272,7 +272,7 @@ Requirements:
 
 Acceptance Criteria:
 - When the client invokes below API.
-```json
+```shell
 http://localhost:9090/student/search/n
 ```
 Expected Response:
@@ -288,7 +288,7 @@ Requirements:
 
 Acceptance Criteria:
 - When the student invokes below API with name prefix as 'n' or 'N' the response should be the same.
-```json
+```shell
 http://localhost:9090/student/search/n
 
 http://localhost:9090/student/search/N
@@ -314,7 +314,7 @@ Acceptance criteria:
 - You should have followed BDD first approach.
 - All tests are passing.
 - When the student invokes below API with last name as 'RaJpUt'
-```json
+```shell
 http://localhost:9090/student/searchbylastname?lastaname=RaJpUt
 
 or
