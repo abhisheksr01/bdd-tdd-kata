@@ -90,7 +90,7 @@ In terminal execute below command to download all dependencies.
 Feature: Retrieve Student Information
   Scenario: When a name prefix is passed all the students information starting with that is returned
     Given Student enters name prefix "n"
-    When The student makes a call to get the details
+    When The student makes a call to "http://localhost:8080/search/" get the details
     Then The API should return the student details and response code 200
 ```
 
@@ -267,7 +267,7 @@ Acceptance Criteria:
 At the moment the API is accessible at `http://localhost:8080/search/{namePrefix}`.
 
 Requirements:
-- The application uses Spring Boots concept of <b>context path</b> before all the api requests. The content path should be 'student'.
+- The application should use Spring Boots concept of <b>context path</b> before all the api requests. The content path should be 'student'.
 - The application is accessible on port 9090.
 
 Acceptance Criteria:
@@ -335,7 +335,7 @@ Requirements:
   Scenario: When a name prefix is passed but no data is matched
     Given Student enters name prefix "Z"
     When The student makes a call to "http://localhost:9090/student/search/" to get the details
-    Then The API should return a message "No student data found" and response code 404
+    Then The API should return a message "no student data found" and response code 404
 ```
 
 ### 1.6 When invalid input data is passed as name prefix
@@ -347,14 +347,14 @@ Requirements:
   Scenario: When a name prefix is passed but no data is matched
     Given Student enters name prefix "11111111"
     When The student makes a call to "http://localhost:9090/student/search/" to get the details
-    Then The API should return a message "bad request" and response code 401
+    Then The API should return a message "bad request" and response code 400
 ```
 
 ```gherkin
   Scenario: When a name prefix is passed but no data is matched
-    Given Student enters name prefix "@abhishek"
+    Given Student enters name prefix "@bhishek"
     When The student makes a call to "http://localhost:9090/student/search/" to get the details
-    Then The API should return a message "bad request" and response code 401
+    Then The API should return a message "bad request" and response code 400
 ```
 
 ## 2. Building a new Application from scratch
