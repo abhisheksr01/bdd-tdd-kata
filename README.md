@@ -30,7 +30,7 @@ You can refer below links to learn more about BDD:
 Currently, we need to expose a GET endpoint that allows the client to search for students whose nameprefix matches the requested string.
 
 Example request and response:
-```aidl
+```shell
 Request:
 http://localhost:8080/search/a
 
@@ -210,18 +210,18 @@ Expected output:
 
 Expected output:
 ```java
-2022-04-05 11:35:33.910  INFO 67363 --- [           main] com.kata.bddtdd.BDDTDDKataApplication    : Starting BDDTDDKataApplication using Java 1.8.0_301 on Abhisheks-MacBook-Pro.local with PID 67363 (/Users/abhisheksinghrajput/dev/clients/Bright Network/BDDTDDKata/target/classes started by abhisheksinghrajput in /Users/abhisheksinghrajput/dev/clients/Bright Network/BDDTDDKata)
-2022-04-05 11:35:33.912  INFO 67363 --- [           main] com.kata.bddtdd.BDDTDDKataApplication    : No active profile set, falling back to 1 default profile: "default"
-2022-04-05 11:35:34.441  INFO 67363 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2022-04-05 11:35:34.451  INFO 67363 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2022-04-05 11:35:34.452  INFO 67363 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.60]
-2022-04-05 11:35:34.573  INFO 67363 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2022-04-05 11:35:34.574  INFO 67363 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 628 ms
-2022-04-05 11:35:34.784  INFO 67363 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2022-04-05 11:35:34.791  INFO 67363 --- [           main] com.kata.bddtdd.BDDTDDKataApplication    : Started BDDTDDKataApplication in 1.354 seconds (JVM running for 1.633)
-2022-04-05 11:35:48.718  INFO 67363 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-04-05 11:35:48.718  INFO 67363 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2022-04-05 11:35:48.719  INFO 67363 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-04-05 11:35:33.910  INFO 67363 --- [main] com.kata.bddtdd.BDDTDDKataApplication    : Starting BDDTDDKataApplication using Java 1.8.0_301 on Abhisheks-MacBook-Pro.local with PID 67363 (/Users/abhisheksinghrajput/dev/clients/Bright Network/BDDTDDKata/target/classes started by abhisheksinghrajput in /Users/abhisheksinghrajput/dev/clients/Bright Network/BDDTDDKata)
+2022-04-05 11:35:33.912  INFO 67363 --- [main] com.kata.bddtdd.BDDTDDKataApplication    : No active profile set, falling back to 1 default profile: "default"
+2022-04-05 11:35:34.441  INFO 67363 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-04-05 11:35:34.451  INFO 67363 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-05 11:35:34.452  INFO 67363 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.60]
+2022-04-05 11:35:34.573  INFO 67363 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-05 11:35:34.574  INFO 67363 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 628 ms
+2022-04-05 11:35:34.784  INFO 67363 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-04-05 11:35:34.791  INFO 67363 --- [main] com.kata.bddtdd.BDDTDDKataApplication    : Started BDDTDDKataApplication in 1.354 seconds (JVM running for 1.633)
+2022-04-05 11:35:48.718  INFO 67363 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-05 11:35:48.718  INFO 67363 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet     : Initializing Servlet 'dispatcherServlet'
+2022-04-05 11:35:48.719  INFO 67363 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet     : Completed initialization in 1 ms
 
 ```
 
@@ -256,7 +256,7 @@ As part of the kata we would like you to either implement a feature or refactor 
 
 ### 1.1 Implement Separation of concern
 
-Purposefully the application is coded in a way that it omits the separation of concern principle. Refactor the code accordingly to meet the principle.
+Purposefully the application is coded in a way that it omits the separation of concern principle. Refactor the code accordingly to meet coding best practices.
 
 Acceptance Criteria:
 - Ensure all tests (Unit & BDD) are still passing once the refactoring is done.
@@ -338,4 +338,23 @@ Requirements:
     Then The API should return a message "No student data found" and response code 404
 ```
 
-2. Building a new Application from scratch
+### 1.6 When invalid input data is passed as name prefix
+
+Requirements:
+- When name non-alphabetic name prefix is passed the application should return error status code as 400 and message bad request.
+- Use below scenarios to implement the new functionality
+```gherkin
+  Scenario: When a name prefix is passed but no data is matched
+    Given Student enters name prefix "11111111"
+    When The student makes a call to "http://localhost:9090/student/search/" to get the details
+    Then The API should return a message "bad request" and response code 401
+```
+
+```gherkin
+  Scenario: When a name prefix is passed but no data is matched
+    Given Student enters name prefix "@abhishek"
+    When The student makes a call to "http://localhost:9090/student/search/" to get the details
+    Then The API should return a message "bad request" and response code 401
+```
+
+## 2. Building a new Application from scratch
