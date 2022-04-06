@@ -38,6 +38,10 @@ Response:
 [{"firstName":"abhishek","lastName":"rajput"},{"firstName":"ash","lastName":"ketchum"}]
 ```
 
+Thanks to [repo-visualization](https://octo.github.com/projects/repo-visualization) for giving us enough of a “fingerprint” to glance and see the structure of the codebase as below:
+
+![Visualization of the codebase](./diagram.svg)
+
 ## Applying BDD in Spring Boot for automation
 
 We are following BDD first approach where we wrote a failing feature/acceptance criteria thus driving our development through behavior and then followed by Test Driven Development.
