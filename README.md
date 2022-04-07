@@ -207,6 +207,19 @@ Expected output:
 [INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 ```
 
+To check the test code coverage execute tests with the install command:
+
+```shell
+./mvnw clean install
+``` 
+
+The JaCoCo test code coverage should be available at below path.
+```shell
+target/site/jacoco/index.html
+```
+![](src/main/resources/codecoverage.png)
+
+
 - From your terminal execute below command to start the application.
 ```bash
 ./mvnw spring-boot:run
