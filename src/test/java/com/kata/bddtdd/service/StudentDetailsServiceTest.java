@@ -25,7 +25,7 @@ class StudentDetailsServiceTest {
     }
 
     @Test
-    void getStudentDetailsFromDB_whenNamePrefixWithAIsPassed_shouldReturnStudentDetailsWithFirstNameStartingWithA() {
+    void getStudentDetailsFromDB_whenNamePrefixWithaIsPassed_shouldReturnStudentDetailsWithFirstNameStartingWithA() {
         String namePrefix = "a";
         when(mockStudentDetailsRepository.getStudentDetails()).thenReturn(getStudentsDetails());
 
@@ -40,7 +40,7 @@ class StudentDetailsServiceTest {
 
     @Test
     void getStudentDetailsFromDB_whenNamePrefixWithNIsPassed_shouldReturnStudentDetailsWithFirstNameStartingWithN() {
-        String namePrefix = "n";
+        String namePrefix = "N";
         when(mockStudentDetailsRepository.getStudentDetails()).thenReturn(getStudentsDetails());
 
         List<Student> actualStudentData = studentDetailsService.getStudentDetailsMatchedByNamePrefix(namePrefix);

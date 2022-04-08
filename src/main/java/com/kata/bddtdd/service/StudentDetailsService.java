@@ -37,7 +37,7 @@ public class StudentDetailsService {
         studentList.add(student7);
 
         return studentList.stream().filter(
-                studentDetails -> studentDetails.getFirstName().startsWith(namePrefix)
+                studentDetails -> studentDetails.getFirstName().toLowerCase().startsWith(namePrefix.toLowerCase())
         ).collect(Collectors.toList());
     }
 }
