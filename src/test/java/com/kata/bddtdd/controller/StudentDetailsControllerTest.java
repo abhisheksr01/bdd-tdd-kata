@@ -1,6 +1,6 @@
 package com.kata.bddtdd.controller;
 
-import com.kata.bddtdd.Student;
+import com.kata.bddtdd.model.Student;
 import com.kata.bddtdd.service.StudentDetailsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

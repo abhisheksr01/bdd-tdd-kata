@@ -1,6 +1,6 @@
 package com.kata.bddtdd.controller;
 
-import com.kata.bddtdd.Student;
+import com.kata.bddtdd.model.Student;
 import com.kata.bddtdd.service.StudentDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

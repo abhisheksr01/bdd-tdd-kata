@@ -1,4 +1,4 @@
-package com.kata.bddtdd;
+package com.kata.bddtdd.model;
 
 import java.util.Objects;
 

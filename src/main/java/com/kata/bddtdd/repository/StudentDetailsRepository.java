@@ -1,6 +1,6 @@
 package com.kata.bddtdd.repository;
 
-import com.kata.bddtdd.Student;
+import com.kata.bddtdd.model.Student;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

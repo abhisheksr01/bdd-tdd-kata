@@ -1,6 +1,6 @@
 package com.kata.bddtdd.service;
 
-import com.kata.bddtdd.Student;
+import com.kata.bddtdd.model.Student;
 import com.kata.bddtdd.repository.StudentDetailsRepository;
 import org.springframework.stereotype.Service;
 
