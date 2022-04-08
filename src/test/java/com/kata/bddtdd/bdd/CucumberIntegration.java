@@ -1,5 +1,6 @@
-package com.kata.bddtdd;
+package com.kata.bddtdd.bdd;
 
+import com.kata.bddtdd.BDDTDDKataApplication;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import io.cucumber.spring.CucumberContextConfiguration;

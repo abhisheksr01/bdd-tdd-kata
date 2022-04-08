@@ -1,4 +1,4 @@
-package com.kata.bddtdd;
+package com.kata.bddtdd.bdd;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StepDefinition {
 
     String namePrefix = null;
-    private ResponseEntity response;
     RestTemplate restTemplate = new RestTemplate();
+    private ResponseEntity response;
 
     @Given("Student enters name prefix {string}")
     public void student_enters_the_roll_number(String namePrefix) {

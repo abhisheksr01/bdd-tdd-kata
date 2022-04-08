@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class StudentDetailsService {
 
     private StudentDetailsRepository studentDetailsRepository;
+
     public StudentDetailsService(StudentDetailsRepository studentDetailsRepository) {
         this.studentDetailsRepository = studentDetailsRepository;
     }
