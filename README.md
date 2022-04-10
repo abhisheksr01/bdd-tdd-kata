@@ -56,29 +56,29 @@ We are using Cucumber framework for implementing BDD in this boot.
 Please add below dependencies in your pom.xml
 ```xml
                 <dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-core</artifactId>
-			<version>6.8.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-java</artifactId>
-			<version>6.8.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>6.8.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-spring</artifactId>
-			<version>6.8.0</version>
-			<scope>test</scope>
-		</dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-core</artifactId>
+    <version>6.8.0</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-java</artifactId>
+<version>6.8.0</version>
+<scope>test</scope>
+</dependency>
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-junit</artifactId>
+<version>6.8.0</version>
+<scope>test</scope>
+</dependency>
+<dependency>
+<groupId>io.cucumber</groupId>
+<artifactId>cucumber-spring</artifactId>
+<version>6.8.0</version>
+<scope>test</scope>
+</dependency>
 
 ```
 
@@ -91,10 +91,9 @@ In terminal execute below command to download all dependencies.
 - Create a resources subdirectory inside the test directory as `src/test/resources` and add a feature file called student.feature as below:
 
 ```gherkin
-Feature: Retrieve Student Information
   Scenario: When a name prefix is passed all the students information starting with that is returned
     Given Student enters name prefix "n"
-    When The student makes a call to "http://localhost:8080/search/" get the details
+    When The student makes a call to "http://localhost:8080/search/" and get the details
     Then The API should return the student details and response code 200
 ```
 
@@ -127,8 +126,8 @@ public class StepDefinition {
         throw new io.cucumber.java.PendingException();
     }
 
-    @When("The student makes a call to get the details")
-    public void the_student_makes_a_call_to_get_the_details() {
+    @When("The student makes a call to {string} and get the details")
+    public void the_student_makes_a_call_to_and_get_the_details(String url) {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
@@ -264,7 +263,7 @@ The rule of doing these katas are:
 - Fork this repository so that you have working copy of yours and ensure each member of the group has write access to it.
 - Practise BDD and TDD
 - Follow coding best practices
-- Add, refactor or delete tests accordingly and make sure all the tests are passing. 
+- Add, refactor or delete tests accordingly and make sure all the tests are passing.
 - You are free to search and refer other codebase, but you should be able to justify the implementation.
 
 ## 1. Updating the current application
@@ -320,9 +319,9 @@ Expected Response:
 Requirements:
 - Use below scenario to implement the new feature
 ```gherkin
-Scenario: When a student want to search student details by last name and the api is case insensitive
+  Scenario: When a student want to search student details by last name and the api is case insensitive
     Given Student enters last name "RaJpUt"
-    When The student makes a call to "http://localhost:9090/student/searchbylastname" get the details
+    When The student makes a call to "http://localhost:9090/student/searchbylastname/" and get the details
     Then The API should return the student details where firstname is "abhishek", lastname is "rajput"
     And response code 200
 ```
@@ -332,11 +331,11 @@ Acceptance criteria:
 - All tests are passing.
 - When the student invokes below API with last name as 'RaJpUt'
 ```shell
-http://localhost:9090/student/searchbylastname?lastaname=RaJpUt
+http://localhost:9090/student/searchbylastname/RaJpUt
 
 or
 
-http://localhost:9090/student/searchbylastname?lastaname=rajput
+http://localhost:9090/student/searchbylastname/rajput
 ```
 
 Expected Response:
@@ -349,10 +348,10 @@ Expected Response:
 Requirements:
 - Use below scenario to implement the new feature
 ```gherkin
-  Scenario: When a name prefix is passed but no data is matched
-    Given Student enters name prefix "Z"
-    When The student makes a call to "http://localhost:9090/student/search/" to get the details
-    Then The API should return a message "no student data found" and response code 404
+    Scenario: When a name prefix is passed but no data is matched
+      Given Student enters name prefix "Z"
+      When The student makes a call to "http://localhost:9090/student/search/" and get the details
+      Then The API should return a message "no student data found" and response code 404
 ```
 
 ### 1.6 When invalid input data is passed as name prefix
@@ -361,10 +360,10 @@ Requirements:
 - When name non-alphabetic name prefix is passed the application should return error status code as 400 and message bad request.
 - Use below scenarios to implement the new functionality
 ```gherkin
-  Scenario: When a name prefix is passed but no data is matched
-    Given Student enters name prefix "11111111"
-    When The student makes a call to "http://localhost:9090/student/search/" to get the details
-    Then The API should return a message "bad request" and response code 400
+    Scenario: When a non alphabetic name prefix is passed
+      Given Student enters name prefix "11111111"
+      When The student makes a call to "http://localhost:9090/student/search/" and get the details
+      Then The API should return a message "bad request a name prefix can only contain alphabets" and response code 400
 ```
 
 ```gherkin
@@ -374,4 +373,8 @@ Requirements:
     Then The API should return a message "bad request" and response code 400
 ```
 
+<b>Implementation of [Kata 1 can be found in kata1 branch](https://github.com/abhisheksr01/bdd-tdd-kata/tree/kata1) of this repository.</b>
+
 ## 2. Building a new Application from scratch
+
+[TBC]
