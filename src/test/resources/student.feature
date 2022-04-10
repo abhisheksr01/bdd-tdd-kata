@@ -16,7 +16,11 @@ Feature: Retrieve Student Information
     When The student makes a call to "http://localhost:9090/student/search/" and get the details
     Then The API should return a message "no student data found" and response code 404
 
-  Scenario: When a non alphabetic name prefix is passed
-    Given Student enters name prefix "11111111"
+  Scenario Outline: When a non alphabetic name prefix is passed
+    Given Student enters invalid name prefix "<namePrefix>"
     When The student makes a call to "http://localhost:9090/student/search/" and get the details
     Then The API should return a message "bad request a name prefix can only contain alphabets" and response code 400
+    Examples:
+      | namePrefix |
+      | 1111111    |
+      | @bhishek   |

@@ -15,11 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StepDefinition {
 
-    String requestParameter = null;
-    RestTemplate restTemplate = new RestTemplate();
-    private ResponseEntity response;
+    private String requestParameter = null;
     private String exceptionMessage;
     private int exceptionStatusCode;
+    private ResponseEntity response;
+    private RestTemplate restTemplate = new RestTemplate();
 
     @Given("Student enters name prefix {string}")
     public void student_enters_the_roll_number(String namePrefix) {
@@ -28,6 +28,7 @@ public class StepDefinition {
 
     @When("The student makes a call to {string} and get the details")
     public void the_student_makes_a_call_to_and_get_the_details(String url) {
+        System.out.println("bbbbbbbbbbbbb: " + this.requestParameter);
         try {
             response = restTemplate.getForEntity(url + this.requestParameter, List.class);
         } catch (HttpClientErrorException exception) {
@@ -42,7 +43,10 @@ public class StepDefinition {
         assertEquals(statusCode, response.getStatusCodeValue());
     }
 
-    // Second scenario where we are reusing when step definition from 1st scenario.
+    /**
+     * Kata: 1.4: Testing for retrieving student details by last name
+     * Reusing When step from previous steps.
+     */
     @Given("Student enters last name {string}")
     public void student_enters_last_name(String lastName) {
         // Write code here that turns the phrase above into concrete actions
@@ -62,11 +66,24 @@ public class StepDefinition {
         assertEquals(expectedStatusCode, response.getStatusCodeValue());
     }
 
-    // Third Scenario where we are reusing the given and when step definition from 1st scenario
+    /**
+     * Kata: 1.5: Testing for no matching student details found scenario.
+     * Reusing Given and When (although we have to add try catch block to handle exception scenarios) steps from previous steps.
+     */
     @Then("The API should return a message {string} and response code {int}")
     public void the_api_should_return_a_message_and_response_code(String expectedErrorMessage, Integer expectedStatusCode) {
         assertEquals(expectedStatusCode, exceptionStatusCode);
         assertEquals(expectedErrorMessage, exceptionMessage);
+    }
+
+    /**
+     * Kata: 1.6: Testing for invalid name prefix.
+     * Here we are using Scenario Outline concept of Cucumber to avoid duplication of scenario in feature file
+     * Reusing When and Then steps from previous steps.
+     */
+    @Given("Student enters invalid name prefix {string}")
+    public void student_enters_invalid_name_prefix(String namePrefix) {
+        this.requestParameter = namePrefix;
     }
 
 }
