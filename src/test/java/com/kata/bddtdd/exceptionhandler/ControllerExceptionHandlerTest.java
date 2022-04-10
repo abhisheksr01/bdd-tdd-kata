@@ -29,5 +29,16 @@ class ControllerExceptionHandlerTest {
         assertEquals("no student data found", responseEntity.getBody());
     }
 
+    @Test
+    void handleHttpClientErrorException_shouldReturn400AndBadRequestError_whenHttpClientErrorExceptionWith400Occurs() {
+        HttpClientErrorException httpClientErrorException =
+                new HttpClientErrorException(HttpStatus.BAD_REQUEST, "bad request a name prefix can only contain alphabets");
+
+        ResponseEntity responseEntity = controllerExceptionHandler.
+                handleHttpClientErrorException(httpClientErrorException);
+
+        assertEquals(400, responseEntity.getStatusCodeValue());
+        assertEquals("bad request a name prefix can only contain alphabets", responseEntity.getBody());
+    }
 
 }

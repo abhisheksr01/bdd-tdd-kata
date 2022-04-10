@@ -13,10 +13,9 @@ public class ControllerExceptionHandler {
     public ResponseEntity handleHttpClientErrorException(HttpClientErrorException httpClientErrorException) {
         if (httpClientErrorException.getRawStatusCode() == 404) {
             return new ResponseEntity(httpClientErrorException.getStatusText(), HttpStatus.NOT_FOUND);
-}
-        //else if (httpClientErrorException.getRawStatusCode() == 400) {
-//            return new ResponseEntity(httpClientErrorException.getStatusText(), HttpStatus.BAD_REQUEST);
-//        }
+        } else if (httpClientErrorException.getRawStatusCode() == 400) {
+            return new ResponseEntity(httpClientErrorException.getStatusText(), HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

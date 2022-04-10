@@ -5,6 +5,8 @@ import com.kata.bddtdd.service.StudentDetailsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -59,5 +61,19 @@ class StudentDetailsControllerTest {
                 () -> assertEquals("abhishek", actualStudentData.get(0).getFirstName()),
                 () -> assertEquals("rajput", actualStudentData.get(0).getLastName())
         );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"11111111", "@bhishek"})
+    void getStudentDetailsByLastName_whenNonAlphabeticNamePrefixIsPassed_shouldThrowBadRequestError(String namePrefix) {
+        // This is another way of testing the exception scenarios
+        String actualErrorMessage = null;
+        final String expectedErrorMessage = "400 bad request a name prefix can only contain alphabets";
+        try {
+            studentDetailsController.getStudentDetailsMatchedByNamePrefix(namePrefix);
+        } catch (Exception exception) {
+            actualErrorMessage = exception.getMessage();
+        }
+        assertEquals(expectedErrorMessage, actualErrorMessage);
     }
 }
