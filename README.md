@@ -321,10 +321,10 @@ Requirements:
 - Use below scenario to implement the new feature
 ```gherkin
 Scenario: When a student want to search student details by last name and the api is case insensitive
-    Given Student enters last name "RaJpUt"
-    When The student makes a call to "http://localhost:9090/student/searchbylastname" get the details
-    Then The API should return the student details where firstname is "abhishek", lastname is "rajput"
-    And response code 200
+  Given Student enters last name "RaJpUt"
+  When The student makes a call to "http://localhost:9090/student/searchbylastname/" get the details
+  Then The API should return the student details where firstname is "abhishek", lastname is "rajput"
+  And response code 200
 ```
 
 Acceptance criteria:
@@ -332,11 +332,11 @@ Acceptance criteria:
 - All tests are passing.
 - When the student invokes below API with last name as 'RaJpUt'
 ```shell
-http://localhost:9090/student/searchbylastname?lastaname=RaJpUt
+http://localhost:9090/student/searchbylastname/RaJpUt
 
 or
 
-http://localhost:9090/student/searchbylastname?lastaname=rajput
+http://localhost:9090/student/searchbylastname/rajput
 ```
 
 Expected Response:
