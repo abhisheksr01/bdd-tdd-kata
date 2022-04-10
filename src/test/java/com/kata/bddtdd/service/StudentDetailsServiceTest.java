@@ -3,13 +3,14 @@ package com.kata.bddtdd.service;
 import com.kata.bddtdd.model.Student;
 import com.kata.bddtdd.repository.StudentDetailsRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -24,30 +25,30 @@ class StudentDetailsServiceTest {
         studentDetailsService = new StudentDetailsService(mockStudentDetailsRepository);
     }
 
-    @Test
-    void getStudentDetailsFromDB_whenNamePrefixWithaIsPassed_shouldReturnStudentDetailsWithFirstNameStartingWithA() {
-        String namePrefix = "a";
+    @ParameterizedTest
+    @CsvSource({"a,abhishek,rajput", "A,abhishek,rajput", "n,novita,s"})
+    void getStudentDetailsFromDB_whenNamePrefixWithaIsPassed_shouldReturnStudentDetailsWithFirstNameStartingWithA(String namePrefix, String firstName, String lastName) {
         when(mockStudentDetailsRepository.getStudentDetails()).thenReturn(getStudentsDetails());
 
         List<Student> actualStudentData = studentDetailsService.getStudentDetailsMatchedByNamePrefix(namePrefix);
 
         assertAll("actualStudentData",
-                () -> assertEquals("abhishek", actualStudentData.get(0).getFirstName()),
-                () -> assertEquals("rajput", actualStudentData.get(0).getLastName())
+                () -> assertEquals(firstName, actualStudentData.get(0).getFirstName()),
+                () -> assertEquals(lastName, actualStudentData.get(0).getLastName())
         );
     }
 
-
-    @Test
-    void getStudentDetailsFromDB_whenNamePrefixWithNIsPassed_shouldReturnStudentDetailsWithFirstNameStartingWithN() {
-        String namePrefix = "N";
+    @ParameterizedTest
+    @ValueSource(strings = {"RaJPut", "rajput"})
+    void getStudentDetailsByLastName_whenRaJPutAsLastNameIsPassed_shouldReturnStudentDetailsWithLastNameWithRaJPut_AndIsCaseInsensitive(String lastName) {
         when(mockStudentDetailsRepository.getStudentDetails()).thenReturn(getStudentsDetails());
 
-        List<Student> actualStudentData = studentDetailsService.getStudentDetailsMatchedByNamePrefix(namePrefix);
+        List<Student> actualStudentData = studentDetailsService.getStudentDetailsByLastName(lastName);
 
         assertAll("actualStudentData",
-                () -> assertEquals("novita", actualStudentData.get(0).getFirstName())
-        );
+                () -> assertEquals("abhishek", actualStudentData.get(0).getFirstName()),
+                () -> assertTrue("rajput".equalsIgnoreCase(actualStudentData.get(0).getLastName())
+                ));
     }
 
     private List<Student> getStudentsDetails() {

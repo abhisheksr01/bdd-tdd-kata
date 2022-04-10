@@ -18,7 +18,12 @@ public class StudentDetailsController {
     }
 
     @GetMapping("/search/{namePrefix}")
-    public List<Student> getStudentDetails(@PathVariable String namePrefix) {
+    public List<Student> getStudentDetailsMatchedByNamePrefix(@PathVariable String namePrefix) {
         return this.studentDetailsService.getStudentDetailsMatchedByNamePrefix(namePrefix);
+    }
+
+    @GetMapping("/searchbylastname/{lastName}")
+    public List<Student> getStudentDetailsByLastName(@PathVariable String lastName) {
+        return this.studentDetailsService.getStudentDetailsByLastName(lastName);
     }
 }

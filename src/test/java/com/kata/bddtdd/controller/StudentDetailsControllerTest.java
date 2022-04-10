@@ -34,7 +34,25 @@ class StudentDetailsControllerTest {
         when(mockStudentDetailsService.getStudentDetailsMatchedByNamePrefix(namePrefix)).thenReturn(asList(mockData));
 
         //Action
-        List<Student> actualStudentData = studentDetailsController.getStudentDetails(namePrefix);
+        List<Student> actualStudentData = studentDetailsController.getStudentDetailsMatchedByNamePrefix(namePrefix);
+
+        //Assertion
+        assertAll("actualStudentData",
+                () -> assertEquals("abhishek", actualStudentData.get(0).getFirstName()),
+                () -> assertEquals("rajput", actualStudentData.get(0).getLastName())
+        );
+    }
+
+    @Test
+    @DisplayName("Get Student details for a valid name prefix")
+    void getStudentDetailsByLastName_whenLastNameMatches_shouldReturnStudentDetails() {
+        //Arrange
+        String lastName = "RaJpuT";
+        Student mockData = new Student("abhishek", "rajput");
+        when(mockStudentDetailsService.getStudentDetailsByLastName(lastName)).thenReturn(asList(mockData));
+
+        //Action
+        List<Student> actualStudentData = studentDetailsController.getStudentDetailsByLastName(lastName);
 
         //Assertion
         assertAll("actualStudentData",
