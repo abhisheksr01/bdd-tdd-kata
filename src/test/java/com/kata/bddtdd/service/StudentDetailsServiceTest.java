@@ -3,9 +3,11 @@ package com.kata.bddtdd.service;
 import com.kata.bddtdd.model.Student;
 import com.kata.bddtdd.repository.StudentDetailsRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +51,15 @@ class StudentDetailsServiceTest {
                 () -> assertEquals("abhishek", actualStudentData.get(0).getFirstName()),
                 () -> assertTrue("rajput".equalsIgnoreCase(actualStudentData.get(0).getLastName())
                 ));
+    }
+
+    @Test
+    void getStudentDetailsFromDB_whenNoStudentDetailsIsFound_shouldThrowNotFoundException() {
+        String namePrefix = "Z";
+
+        assertThrows(HttpClientErrorException.NotFound.class, () -> {
+            studentDetailsService.getStudentDetailsMatchedByNamePrefix(namePrefix);
+        });
     }
 
     private List<Student> getStudentsDetails() {
