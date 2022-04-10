@@ -17,12 +17,12 @@ public class StepDefinition {
     RestTemplate restTemplate = new RestTemplate();
 
     @Given("Student enters name prefix {string}")
-    public void student_enters_the_roll_number(String namePrefix) {
+    public void student_enters_name_prefix(String namePrefix) {
         this.namePrefix = namePrefix;
     }
 
-    @When("The student makes a call to {string} get the details")
-    public void the_student_makes_a_call_to_get_the_details(String url) {
+    @When("The student makes a call to {string} and get the details")
+    public void the_student_makes_a_call_to_and_get_the_details(String url) {
         response = restTemplate.getForEntity(url + this.namePrefix, List.class);
     }
 
